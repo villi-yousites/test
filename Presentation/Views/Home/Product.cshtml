@@ -1,0 +1,52 @@
+﻿<script type="text/javascript">
+    function test(id) {
+        $('#imagepre').attr("src",$(id).attr("src"));
+
+        return false;
+    }
+       
+    </script>
+
+@if (ViewBag.Product != null)
+{
+    <div style="margin-top: 100px;">
+    <h1>Product Information</h1>
+    <div style="margin-bottom: 130px;"><input type="button" value="Back" onclick="history.go(-1)"/></div>
+        <table>
+            <tr>
+                <td>
+                @if (ViewBag.Product.ProductImages != null)
+                {
+                <img id="imagepre" src="@(ViewBag.Product.ProductImages[0])" />
+                }
+                else
+                {
+                    <text>No Image</text>
+                }
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td><b>@ViewBag.Product.ProductName</b></td>
+                        </tr>
+                        <tr>
+                            <td>@ViewBag.Product.ProductDesc</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <div style="text-align: left; width: 300px;">
+             All the images:<br/><br/>
+             @{
+                 int id = 0;
+             }
+            @foreach (var image in ViewBag.Product.ProductImages)
+            {
+                <div style="width: 20px; float: left; margin-right: 10px; border: solid 1px black;"><img id="@(id)" src="@(image)" width="20" height="20" onclick="return test(this);"/></div>
+                id++;
+            }
+        </div>
+    </div>
+   
+}

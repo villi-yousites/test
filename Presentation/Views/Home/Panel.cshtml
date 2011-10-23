@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "~/Views/Shared/_userLayout.cshtml";
+}
+
+@if (Request.IsAuthenticated)
+{
+    <h1>User Panel</h1>
+    <h4>Welcome @Context.User.Identity.Name [@Html.ActionLink("Logout","LogOut")][@Html.ActionLink("Home","Index")]</h4>
+    if (TempData["notify"] != null)
+    {
+        <h4>@TempData["notify"]</h4>
+    }
+    <div style="margin-bottom: 40px;">
+        <fieldset>
+            <legend>Add Products</legend>
+            @using (Html.BeginForm("AddProduct", "Home", FormMethod.Post))
+            {
+                <table>
+                    <tr>
+                        <td>Product name: </td>
+                        <td>@Html.TextBox("txtPrdName")</td>
+                    </tr>
+                    <tr>
+                        <td>Product description: </td>
+                        <td>@Html.TextArea("txtPrdDesc")</td>
+                    </tr>
+                    <tr>
+                        <td>Product image: </td>
+                        <td>@Html.TextBox("txtPrdImage")</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Add" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color: red;">
+                            @if (TempData["Error"] != null)
+                            {
+                                <text>@TempData["Error"]</text>
+                            }
+                        </td>
+                    </tr>
+                </table>
+            }
+        </fieldset>  
+    </div>
+    if (ViewBag.Products != null)
+     {
+         <div>
+             <table border="1">
+             <tr>
+                <td>Product name</td><td>Actions</td>
+             </tr>
+                @foreach (var product in ViewBag.Products)
+                {
+                    <tr>
+                        <td>@product</td>
+                        <td>@Html.ActionLink("Edit","Edit", new{ id = product } ), @Html.ActionLink("Delete","DeleteProduct", new{ id = product } )</td>
+                    </tr>
+                }
+             </table>
+         </div>
+     }
+
+}

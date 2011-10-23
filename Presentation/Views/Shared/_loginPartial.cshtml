@@ -1,0 +1,31 @@
+﻿<div style="width: 400px; margin-top: 100px;">
+    <fieldset style="border: solid 1px black;">
+        <legend>Login</legend>
+        @using (Html.BeginForm("LogIn", "Home", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td>Email:</td>
+                    <td>@Html.TextBox("txtUser")</td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td>@Html.Password("txtPass")</td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Login" /></td>
+                    <td><input type="button" value="Back" onclick="history.go(-1)"/></td>
+                </tr>
+                <tr>
+                <td></td>
+                    <td style="color: Red;">
+                        @if (TempData["Error"] != null)
+                        {
+                            <text>@TempData["Error"]</text>
+                        }
+                    </td>
+                </tr>
+            </table>
+        }
+    </fieldset>
+</div>

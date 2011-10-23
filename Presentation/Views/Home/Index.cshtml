@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Index";
+    
+}
+<div>
+    <h1>Product Gallery</h1>
+</div>
+<div style="margin-top: 100px;">
+@using (Html.BeginForm("Search", "Home", FormMethod.Get))
+{
+    <table>
+        <tr>
+            <td>@Html.TextBox("p", string.Empty, new {style = "Width:550px; Height:30px; font-size: 20px;"})</td>
+            <td><input type="submit" value="GO" style="width: 50px; height: 36px;" /></td>
+        </tr>
+        <tr>
+            <td style="color: Red;">
+                @if(TempData["Error"] != null )
+                {
+                    <text>@TempData["Error"]</text>
+                }
+            </td>
+        </tr>
+    </table>
+}
+</div>
+@if(ViewBag.Products != null)
+{
+    <div style="margin-top: 50px;">
+        <table style="width: 550px; text-align: left;">
+        <h3 style="text-align: left;">Results:</h3>
+        @foreach(var product in ViewBag.Products)
+        {
+            <tr>
+                <td>@Html.ActionLink((string)product.ProductName, "Product", "Home", new{ id = product.ProductName }, null)</td>
+            </tr>
+        }
+        </table>
+    </div>
+}
+
+

@@ -1,0 +1,46 @@
+﻿@if (Request.IsAuthenticated && ViewBag.Product != null)
+{
+    <div style="margin-bottom: 20px;">
+        <h1>Edit Product[@Html.ActionLink("Back","Panel")]</h1>
+        <fieldset>
+            <legend>@ViewBag.Product.ProductName</legend>
+            @using (Html.BeginForm("SaveProduct", "Home", FormMethod.Post))
+            {
+                <table>
+                    <tr>
+                        <td>Name: </td>
+                        <td>@Html.TextBox("txtName", (string) ViewBag.Product.ProductName)</td>
+                    </tr>
+                    <tr>
+                        <td>Description: </td>
+                        <td>@Html.TextBox("txtDesc", (string) ViewBag.Product.ProductDesc)</td>
+                    </tr>
+                    <tr>
+                        <td>Add new image: </td>
+                        <td>@Html.TextBox("txtImage",string.Empty)</td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Save" /></td>
+                        <td>@Html.Hidden("hiddenName",(string)ViewBag.Product.ProductName)</td>
+                    </tr>
+                </table>
+            }
+        </fieldset>
+    </div>
+    
+    <div>
+        <table border="1">
+            <tr>
+                <td>Image URL</td>
+                <td>Action</td>
+            </tr>
+            @foreach (var image in ViewBag.Product.ProductImages)
+            {
+                <tr>
+                    <td>@image</td>
+                    <td>@Html.ActionLink("Delete","DeleteImage",new { id = image })</td>
+                </tr>
+            }
+        </table>
+    </div>
+}

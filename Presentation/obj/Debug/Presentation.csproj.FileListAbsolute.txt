@@ -1,0 +1,5 @@
+C:\Users\User\Desktop\Presentation\Presentation\bin\Presentation.dll
+C:\Users\User\Desktop\Presentation\Presentation\bin\Presentation.pdb
+C:\Users\User\Desktop\Presentation\Presentation\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\User\Desktop\Presentation\Presentation\obj\Debug\Presentation.dll
+C:\Users\User\Desktop\Presentation\Presentation\obj\Debug\Presentation.pdb
